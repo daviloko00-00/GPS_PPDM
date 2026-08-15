@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+
+//importando as telas da aplicação
+import HomeScreen from "./src/screens/home";
+import PosicaoGPSScreen from "./src/screens/PosicaoGPS";
+
+
+
+//valor padrão
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{headerShown:false}}
+        />
+        <Stack.Screen
+        name="PosicaoGPSScreen"
+        component={PosicaoGPSScreen}
+        options={{title: 'Posição do GPS'}}
+        />
+        
+      </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
